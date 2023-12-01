@@ -100,6 +100,7 @@ export default function CartPage() {
             color="primary"
             variant="outlined"
             onClick={() => clearCart()}
+            sx={textStyle}
           >
             Clear Cart
           </Button>
@@ -108,6 +109,7 @@ export default function CartPage() {
             color="primary"
             variant="contained"
             onClick={handleCheckout}
+            sx={textStyle}
           >
             Checkout
           </Button>
