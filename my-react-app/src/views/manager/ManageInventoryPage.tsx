@@ -398,7 +398,7 @@ export default function ManageInventoryPage() {
                     inputProps={{
                       min: "0",
                       max: "100",
-                      step: ".5",
+                      step: ".50",
                       error: errorState.toString(),
                       helpertext: "Invalid.",
                     }}

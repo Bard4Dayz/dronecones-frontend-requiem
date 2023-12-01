@@ -310,8 +310,12 @@ export const useStore = create<DroneConesState & DroneConesActions>()(
               set((state) => ({
                 cart: [],
                 orders: [
+                  {
+                    ...order,
+                    order_time: date.toLocaleString(),
+                    id: response.data.full_order_id,
+                  },
                   ...state.orders,
-                  { ...body, id: response.data.full_order_id },
                 ],
                 completedOrder: true,
                 products: [],
@@ -506,11 +510,11 @@ export const useStore = create<DroneConesState & DroneConesActions>()(
             `${BACKEND_URL_DEV}/employee/${userId}/drone`,
             body
           );
-          if (response.data?.Drone_id) {
+          if (response.data?.drone_id) {
             set((state) => ({
               drones: [
                 ...state.drones,
-                { ...drone, id: response.data.Drone_id },
+                { ...drone, id: response.data.drone_id },
               ],
             }));
           } else {
@@ -744,7 +748,9 @@ export const useStore = create<DroneConesState & DroneConesActions>()(
             set((state) => ({
               ...state,
               loadedCustomerOrders: true,
-              error: "Error loading history: " + response.data?.error,
+              error:
+                "Error loading history: " + response.data?.error ||
+                "No history available yet",
             }));
           }
         } catch (error) {
@@ -824,7 +830,9 @@ export const useStore = create<DroneConesState & DroneConesActions>()(
             set((state) => ({
               ...state,
               loadedEmployeeOrders: true,
-              error: "Error loading history: " + response.data?.error,
+              error:
+                "Error loading history: " + response.data?.error ||
+                "No history available yet",
             }));
           }
         } catch (error) {
@@ -908,7 +916,9 @@ export const useStore = create<DroneConesState & DroneConesActions>()(
             set((state) => ({
               ...state,
               loadedManagerOrders: true,
-              error: "Error loading history: " + response.data?.error,
+              error:
+                "Error loading history: " + response.data?.error ||
+                "No history available yet",
             }));
           }
         } catch (error) {
