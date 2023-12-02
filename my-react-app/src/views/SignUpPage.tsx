@@ -145,6 +145,14 @@ export default function SignUpPage() {
                   ...wordStyle,
                 }}
               />
+                            <FormControlLabel
+                value={UserType.MANAGER}
+                control={<Radio />}
+                label="Manager - REMOVE BEFORE PRODUCTION"
+                sx={{
+                  ...wordStyle,
+                }}
+              />
             </RadioGroup>
           </FormControl>
           <Box display="flex" justifyContent="center" mt={2}>

@@ -26,8 +26,20 @@ import DroneHistoryPage from "./views/employee/DroneHistoryPage";
 import ManageInventoryPage from "./views/manager/ManageInventoryPage";
 import ManageUsersPage from "./views/manager/ManageUsersPage";
 import ManagerHistoryPage from "./views/manager/ManagerHistoryPage";
+import NotFound from "./views/NotFound";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
+
+//404 error when on app page
+const NotFoundInside: React.FC = () => {
+  return (
+    <div>
+      <h1 className="header-font">404 Error!</h1>
+      <p className="pixel-font">Uh oh! Looks like you wandered off.</p>
+      <p className="pixel-font">Please select another option located on the side bar.</p>
+    </div>
+  );
+};
 
 const router = createBrowserRouter([
   {
@@ -97,8 +109,17 @@ const router = createBrowserRouter([
             path: "manager-history",
             element: <ManagerHistoryPage />,
           },
+          {
+            path: "*", // Catch all when not in page
+            element: <NotFoundInside />,
+          }
         ],
       },
+      
+          {
+            path: "*", // Catch all routes
+            element: <NotFound />,
+          }
     ],
   },
 ]);
@@ -130,6 +151,7 @@ const theme = createTheme({
     },
   },
 });
+
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
