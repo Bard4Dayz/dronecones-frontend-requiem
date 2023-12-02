@@ -47,6 +47,7 @@ export default function AppPage() {
 
   const handleNavBar = (event: any, newPath: string) => {
     if (newPath !== null) {
+      console.log("WE are naving")
       changePath(newPath);
       navigate(`/${newPath}`);
     }

@@ -12,6 +12,8 @@ const errorCheck = (error: any): error is ErrorResponse => {
 };
 
 export default function ErrorPage() {
+
+  console.log("called")
   const error: any = useRouteError();
   console.error(error);
 
