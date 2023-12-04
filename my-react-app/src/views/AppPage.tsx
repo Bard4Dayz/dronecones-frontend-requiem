@@ -47,7 +47,6 @@ export default function AppPage() {
 
   const handleNavBar = (event: any, newPath: string) => {
     if (newPath !== null) {
-      console.log("WE are naving")
       changePath(newPath);
       navigate(`/${newPath}`);
     }
@@ -270,34 +269,33 @@ export default function AppPage() {
               </ToggleButtonGroup>
             </Box>
           )}
-          {user.user_type === UserType.CUSTOMER &&
-            mode === UserType.CUSTOMER && (
-              <Box sx={{ width: "100%", padding: 0 }}>
-                <Divider sx={{ height: "65px" }} />
-                <ToggleButtonGroup
-                  orientation="vertical"
-                  value={appPath}
-                  exclusive
-                  onChange={handleNavBar}
-                  sx={{ width: "100%", height: "100%" }}
+          {user.user_type !== UserType.GUEST && mode === UserType.CUSTOMER && (
+            <Box sx={{ width: "100%", padding: 0 }}>
+              <Divider sx={{ height: "65px" }} />
+              <ToggleButtonGroup
+                orientation="vertical"
+                value={appPath}
+                exclusive
+                onChange={handleNavBar}
+                sx={{ width: "100%", height: "100%" }}
+              >
+                <ToggleButton value="app/menu" sx={optionButtonStyle}>
+                  Menu
+                </ToggleButton>
+                <Divider sx={{ height: "1px" }} />
+                <ToggleButton value="app/cart" sx={optionButtonStyle}>
+                  Cart
+                </ToggleButton>
+                <Divider sx={{ height: "1px" }} />
+                <ToggleButton
+                  value="app/customer-history"
+                  sx={optionButtonStyle}
                 >
-                  <ToggleButton value="app/menu" sx={optionButtonStyle}>
-                    Menu
-                  </ToggleButton>
-                  <Divider sx={{ height: "1px" }} />
-                  <ToggleButton value="app/cart" sx={optionButtonStyle}>
-                    Cart
-                  </ToggleButton>
-                  <Divider sx={{ height: "1px" }} />
-                  <ToggleButton
-                    value="app/customer-history"
-                    sx={optionButtonStyle}
-                  >
-                    History
-                  </ToggleButton>
-                </ToggleButtonGroup>
-              </Box>
-            )}
+                  History
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Box>
+          )}
           {(user.user_type === UserType.EMPLOYEE ||
             user.user_type === UserType.MANAGER) &&
             mode === UserType.EMPLOYEE && (
